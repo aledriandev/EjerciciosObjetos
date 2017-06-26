@@ -1,3 +1,5 @@
+var assert=require("assert");
+
 // Ejercicio 1
 function Rectangulo(base,altura){
   this.base=base;
@@ -6,8 +8,6 @@ function Rectangulo(base,altura){
     return this.base*this.altura;
   }
 }
-var respuesta= new Rectangulo(3,3);
-console.log(respuesta.area());
 
 //Ejercicio 2
 // los metodos son las funciones dentro del objeto
@@ -30,9 +30,6 @@ function Edad(nombre,dia,mes,anioNacimiento){
     return "La edad actual de "+this.nombre +" es "+_edad;
   }
 }
-var myEdad= new Edad("Su",28,06,2015);
-console.log(myEdad.edad());
-
 
 //Ejercicio3
 function Persona(nombre,edad,pasatiempo){
@@ -43,5 +40,25 @@ function Persona(nombre,edad,pasatiempo){
       return "Hola soy "+ this.nombre+" tengo "+ this.edad+" años y me gusta "+ this.pasatiempo
     }
 }
-var frase= new Persona("Alejandra",23,"codear");
-console.log(frase.mensaje());
+
+
+describe("Ejercicios Objetos", function(){
+  describe("Ejercicio 1",function() {
+    it('Prueba de un rectangulo de 3 por 3', function(){
+      var respuesta= new Rectangulo(3,3);
+      assert.equal(9, respuesta.area());
+    });
+  });
+  describe("Ejercicio 2",function() {
+    it("Prueba Su que cumple años el 28 de junio", function(){
+      var myEdad= new Edad("Su",28,06,2000);
+      assert.equal("La edad actual de Su es 16", myEdad.edad());
+    });
+  });
+  describe("Ejercicio 3",function() {
+    it("Prueba Alejandra de 23 que le gusta codear", function(){
+      var frase= new Persona("Alejandra",23,"codear");
+      assert.equal("Hola soy Alejandra tengo 23 años y me gusta codear", frase.mensaje());
+    });
+  });
+});
